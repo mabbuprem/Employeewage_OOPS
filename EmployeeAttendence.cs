@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace EmployeeWageComputation
 {
-    class EmployeeWage
+    class CalculateWorkingHrs
     {
         int workingHrs = 0;
-        int empTotalWage = 0;
-        int MAXDAYS = 20;
-        int MAXHRS = 100;
-        int WAGEPERHRS = 20;
 
         public int GetWorkingHrs()
         {
@@ -40,29 +36,49 @@ namespace EmployeeWageComputation
 
             return workingHrs;
         }
+    }
+
+    class EmployeeWage
+    {
+        public string companyName;
+        public int maxDay;
+        public int maxHrs;
+        public int wagePerHr;
+
+        public EmployeeWage(string companyName, int maxDay, int maxHrs, int wagePerHr)
+        {
+            this.companyName = companyName;
+            this.maxDay = maxDay;
+            this.maxHrs = maxHrs;
+            this.wagePerHr = wagePerHr;
+        }
+
+
 
         public void GetEmpWage()
         {
             int day = 0;
             int totalWorkingHrs = 0;
+            int empTotalWage = 0;
 
-            EmployeeWage empWage1 = new EmployeeWage();
+            CalculateWorkingHrs calculateWorkingHrs = new CalculateWorkingHrs();
 
-            while (day < MAXDAYS && totalWorkingHrs <= MAXHRS)
+            while (day < maxDay && totalWorkingHrs <= maxHrs)
             {
-                workingHrs = empWage1.GetWorkingHrs();
+                int workingHrs = calculateWorkingHrs.GetWorkingHrs();
 
                 totalWorkingHrs = totalWorkingHrs + workingHrs;
 
-                int empWage = WAGEPERHRS * workingHrs;
+                int empWage = wagePerHr * workingHrs;
                 empTotalWage = empTotalWage + empWage;
 
                 Console.WriteLine($"Employee day {day + 1} wage is {empWage}");
                 day++;
             }
-
-            Console.WriteLine("\nTotal working hours is " + totalWorkingHrs);
+            Console.WriteLine($"\n {companyName} employee details");
+            Console.WriteLine("Total working hours is " + totalWorkingHrs);
             Console.WriteLine("Total employee wage is " + empTotalWage);
+
 
         }
 
