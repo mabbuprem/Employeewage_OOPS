@@ -13,9 +13,8 @@ namespace EmpWage_OOPS
             const int IS_FULL_TIME = 1;
             const int IS_PART_TIME = 2;
             const int IS_ABSENT = 0;
-            const int WAGEPERHOUR = 20;
 
-            int workingHours = 0;
+            int workingHours = 8;
 
             Random random = new Random();
             int employeeCheck = random.Next(0, 3);
@@ -23,13 +22,15 @@ namespace EmpWage_OOPS
             {
 
                 case IS_PART_TIME:
-                    Console.WriteLine("Employee is part-time working");
+                    Console.WriteLine("Employee is working for parttime");
                     workingHours = 8;
                     break;
+
                 case IS_FULL_TIME:
-                    Console.WriteLine("Employee is present");
+                    Console.WriteLine("Employee is working for fulltime");
                     workingHours = 8;
                     break;
+
                 default:
                     Console.WriteLine("Employee is absent");
                     workingHours = 0;
@@ -37,8 +38,7 @@ namespace EmpWage_OOPS
             }
 
 
-            int empWage = workingHours * WAGEPERHOUR;
-            return empWage;
+            return workingHours;
         }
     }
 
