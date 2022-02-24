@@ -6,7 +6,9 @@ namespace EmpWage_OOPS
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage Calculation problem solving with OOPS concept");
-            EmployeeAttendence.EmployeeAttendencee();
+            int empWage = EmployeeAttendence.EmployeeWage();
+            Console.WriteLine(empWage);
+
         }
     }
 }
