@@ -6,13 +6,13 @@ namespace EmpWage_OOPS
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage Calculation problem solving with OOPS concept");
-            EmployeeWage dmart = new EmployeeWage("Dmart", 20, 100, 20);
-            EmployeeWage tata = new EmployeeWage("Tata", 25, 125, 30);
-            dmart.GetEmpWage();
-            Console.WriteLine(dmart.ToString());
-            tata.GetEmpWage();
-            Console.WriteLine(tata.ToString());
 
+            EmployeeWageBuilder employeeWageBuilder = new EmployeeWageBuilder(4);
+            employeeWageBuilder.AddEmployeeInfo("Tata", 20, 100, 20);
+            employeeWageBuilder.AddEmployeeInfo("Dmart", 25, 125, 25);
+            employeeWageBuilder.AddEmployeeInfo("Reliance", 30, 140, 35);
+            employeeWageBuilder.AddEmployeeInfo("BigBazar", 23, 110, 22);
+            employeeWageBuilder.CalWage();
         }
     }
 }

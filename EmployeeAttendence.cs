@@ -6,31 +6,41 @@ using System.Threading.Tasks;
 
 namespace EmpWage_OOPS
 {
-    internal class EmployeeWage
+    class EmployeeWageBuilder
     {
-        public string companyName;
-        public int maxDay;
-        public int maxHrs;
-        public int wagePerHr;
-        int empTotalWage = 0;
+        int count = 0;
 
-        public EmployeeWage(string companyName, int maxDay, int maxHrs, int wagePerHr)
+        EmployeeWage[] employeeWages;
+
+        public EmployeeWageBuilder(int size)
         {
-            this.companyName = companyName;
-            this.maxDay = maxDay;
-            this.maxHrs = maxHrs;
-            this.wagePerHr = wagePerHr;
+            this.employeeWages = new EmployeeWage[size];
+        }
+        public void AddEmployeeInfo(string companyName, int maxDay, int maxHrs, int wagePerHr)
+        {
+            this.employeeWages[count] = new EmployeeWage(companyName, maxDay, maxHrs, wagePerHr);
+            count++;
         }
 
-
-        public void GetEmpWage()
+        public void CalWage()
+        {
+            foreach (var empWageObj in employeeWages)
+            {
+                int totalWage = GetEmpWage(empWageObj);
+                empWageObj.SetTotalEmpWage(totalWage);
+                Console.WriteLine(empWageObj.ToString());
+            }
+        }
+        public int GetEmpWage(EmployeeWage employeeWages)
         {
             int workingHrs = 0;
             int day = 0;
             int totalWorkingHrs = 0;
+            int empTotalWage = 0;
 
 
-            while (day < maxDay && totalWorkingHrs <= maxHrs)
+
+            while (day < employeeWages.maxDay && totalWorkingHrs <= employeeWages.maxHrs)
             {
 
                 Random random = new Random();
@@ -57,20 +67,14 @@ namespace EmpWage_OOPS
 
                 totalWorkingHrs = totalWorkingHrs + workingHrs;
 
-                int empWage = wagePerHr * workingHrs;
+                int empWage = employeeWages.wagePerHr * workingHrs;
                 empTotalWage = empTotalWage + empWage;
-
-                //Console.WriteLine($"Employee day {day + 1} wage is {empWage}");
                 day++;
             }
-
+            return empTotalWage;
         }
 
-        public string ToString()
-        {
-            return "\nTotal employee wage for company " + companyName + " is " + empTotalWage;
 
-        }
 
     }
 }
