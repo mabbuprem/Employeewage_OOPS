@@ -4,43 +4,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmpWage_OOPS
+namespace EmployeeWageComputation
 {
-    internal class EmployeeAttendence
+    class EmployeeWage
     {
-        public static int EmployeeWage()
+        int workingHrs = 0;
+        int empTotalWage = 0;
+        int MAXDAYS = 20;
+        int MAXHRS = 100;
+        int WAGEPERHRS = 20;
+
+        public int GetWorkingHrs()
         {
-            const int IS_FULL_TIME = 1;
-            const int IS_PART_TIME = 2;
-            const int IS_ABSENT = 0;
-
-            int workingHours = 8;
-
             Random random = new Random();
-            int employeeCheck = random.Next(0, 3);
-            switch (employeeCheck)
-            {
+            int empCheck = random.Next(0, 3);
 
-                case IS_PART_TIME:
-                    Console.WriteLine("Employee is working for parttime");
-                    workingHours = 8;
+            //Constants
+            const int ABSENT = 0;
+            const int FULLTIME = 1;
+
+            switch (empCheck)
+            {
+                case ABSENT:
+                    workingHrs = 0;
                     break;
 
-                case IS_FULL_TIME:
-                    Console.WriteLine("Employee is working for fulltime");
-                    workingHours = 8;
+                case FULLTIME:
+                    workingHrs = 8;
                     break;
 
                 default:
-                    Console.WriteLine("Employee is absent");
-                    workingHours = 0;
+                    workingHrs = 4;
                     break;
             }
 
-
-            return workingHours;
+            return workingHrs;
         }
-    }
 
+        public void GetEmpWage()
+        {
+            int day = 0;
+            int totalWorkingHrs = 0;
+
+            EmployeeWage empWage1 = new EmployeeWage();
+
+            while (day < MAXDAYS && totalWorkingHrs <= MAXHRS)
+            {
+                workingHrs = empWage1.GetWorkingHrs();
+
+                totalWorkingHrs = totalWorkingHrs + workingHrs;
+
+                int empWage = WAGEPERHRS * workingHrs;
+                empTotalWage = empTotalWage + empWage;
+
+                Console.WriteLine($"Employee day {day + 1} wage is {empWage}");
+                day++;
+            }
+
+            Console.WriteLine("\nTotal working hours is " + totalWorkingHrs);
+            Console.WriteLine("Total employee wage is " + empTotalWage);
+
+        }
+
+    }
 
 }
