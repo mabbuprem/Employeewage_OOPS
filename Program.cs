@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace EmpWage_OOPS
 {
-    internal class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to EmpWage by OOPS Program");
-            
+            Console.WriteLine("Welcome to Employee Wage Calculation problem solving with OOPS concept");
+            EmployeeAttendence.EmployeeAttendencee();
         }
     }
 }
